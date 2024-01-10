@@ -3,14 +3,17 @@ import tkinter as tk    # подключаем модуль для создан�
 
 # основная программа
 def clicker():
+
+    # функция прибавления кликов
     def click(event):
         click_count.configure(state="normal")
         x = int(click_count.get())
         x += int(power_label_amount['text'])
         click_count.delete(0, tk.END)
-        click_count.insert(0, x)
+        click_count.insert(0, str(x))
         click_count.configure(state="readonly")
 
+    # функция покупки увеличения мощности
     def buy_item_1(event):
         amount = int(click_count.get())
         cost = int(shop_item_1_cost['text'].split()[0])
@@ -26,6 +29,7 @@ def clicker():
             shop_item_1_cost.configure(text=str(cost) + " кликов")
             click_count.configure(state="readonly")
 
+    # функция покупки фона
     def buy_item_2(event):
         amount = int(click_count.get())
         if amount >= 1000000:
@@ -39,7 +43,7 @@ def clicker():
     window = tk.Tk()                    # создаём главную форму
     window.title("UberClicker")         # заголовок окна
     window.geometry('400x300')          # размер окна
-    window.resizable(0, 0)   # запрет на растягивание
+    window.resizable(False, False)   # запрет на растягивание
     ### форматирование формы игры ###
     main_label = tk.Label(window, text="Кликай пока кликается!")
     main_label.grid(row=0, column=0, columnspan=3)
